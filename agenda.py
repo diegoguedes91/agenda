@@ -1,5 +1,5 @@
-def adicionar_contato(agenda, nome_contato):
-    contato = {"contato":nome_contato, "favorito":False}
+def adicionar_contato(agenda, nome_contato, telefone_contato, email_contato):
+    contato = {"contato":nome_contato, "telefone":telefone_contato, "email":email_contato, "favorito":False}
     agenda.append(contato)
     print(f'{nome_contato} adicionado na agenda com sucesso!')
     return
@@ -9,7 +9,9 @@ def visualizar_agenda(agenda):
     for indice, contato in enumerate(agenda, start=1): 
         favorito = "☆" if contato["favorito"] else " "
         nome_contato = contato['contato']
-        print(f'{indice}. {nome_contato} {favorito}')
+        telefone_contato = contato['telefone']
+        email_contato = contato['email']
+        print(f'{indice}. {favorito} {nome_contato} telefone:{telefone_contato} email:{email_contato}')
     return
 
 def atualizar_nome_agenda(agenda, indice_contato, novo_nome_contato):
@@ -34,8 +36,10 @@ def visualizar_favoritos_agenda(agenda):
         for indice, contato in enumerate(agenda, start=1): 
             favorito = "☆" if contato["favorito"] else " "
             nome_contato = contato['contato']
+            telefone_contato = contato['telefone']
+            email_contato = contato['email']
             if contato["favorito"]: 
-                print(f'{indice}. {nome_contato} {favorito}')
+                print(f'{indice}. {favorito} {nome_contato} telefone:{telefone_contato} email:{email_contato}')
     else:
         print("Você não tem contato salvo como favorito")
     return
@@ -64,7 +68,9 @@ while True:
 
     if escolha == "1":
         nome_contato = input("Digite o nome do contato: ")
-        adicionar_contato(agenda, nome_contato)
+        telefone_contato = input("Digite o telefone do contato: ")
+        email_contato = input("Digite o email do contato: ")
+        adicionar_contato(agenda, nome_contato, telefone_contato, email_contato)
     elif escolha == "2":
         visualizar_agenda(agenda)
     elif escolha == "3": 
